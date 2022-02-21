@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const course_schema = new mongoose.Schema({
-    title = String,
-    author = String, 
-    tags = [String],
-    date = {
+    title : String,
+    author : String, 
+    tags : [String],
+    date : {
         type: Date,
         default: Date.now()
     },
