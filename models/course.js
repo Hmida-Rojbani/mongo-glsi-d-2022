@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 
 const course_schema = new mongoose.Schema({
     title : String,
-    author : String, 
+    author : {
+        type: Schema.Types.ObjectId,
+        ref: 'Author'
+    }, 
     tags : [String],
     date : {
         type: Date,
