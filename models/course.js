@@ -1,10 +1,18 @@
 const mongoose = require('mongoose');
 
+const author_schema = new mongoose.Schema({
+        name: String,
+        email : String
+});
+
 const course_schema = new mongoose.Schema({
     title : String,
     author : {
-        type: Schema.Types.ObjectId,
-        ref: 'Author'
+        name : String,
+        id : {
+            type: Schema.Types.ObjectId,
+            ref: 'Author'
+        }
     }, 
     tags : [String],
     date : {
