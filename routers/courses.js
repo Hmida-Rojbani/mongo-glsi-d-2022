@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const { Course, course_validation, course_validation_update} = require('../models/course');
 const { Author } = require('../models/author');
+const auth = require('../middlewares/auth');
+const autoris = require('../middlewares/autoris');
 
-router.post('',async (req,res)=>{
+router.post('',auth,async (req,res)=>{
     let results = course_validation.validate(req.body);
     if(results.error)
         return res.status(400).send(results.error.details[0].message);
@@ -33,7 +35,7 @@ router.get('',async (req,res)=>{
 } );
 // TODO
 // update 
-router.put('/:id',async (req,res)=>{
+router.put('/:id',auth,async (req,res)=>{
 
     let results = course_validation_update.validate(req.body);
     if(results.error)
@@ -44,7 +46,7 @@ router.put('/:id',async (req,res)=>{
 } );
 
 // delete (update author)
-router.delete('/:id',async (req,res)=>{
+router.delete('/:id',[auth,autoris],async (req,res)=>{
     let course = await Course.findByIdAndRemove(req.params.id);
     if(! course )
         return res.status(404).send('ID not found');
