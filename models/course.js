@@ -46,7 +46,17 @@ const course_validation = Joi.object({
     price: Joi.number().positive()
 });
 
+const course_validation_update = Joi.object({
+    title : Joi.string().min(3),
+    author : Joi.objectId(),
+    tags: Joi.array().items(Joi.string().min(2)),
+    date : Joi.date(),
+    isPublished: Joi.boolean(),
+    price: Joi.number().positive()
+});
+
 const Course = mongoose.model('Course',course_schema);
 
 module.exports.Course = Course;
 module.exports.course_validation = course_validation;
+module.exports.course_validation_update = course_validation_update;
