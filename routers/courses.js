@@ -31,4 +31,14 @@ router.get('',async (req,res)=>{
 
     res.send(courses);
 } );
+// TODO
+// update 
+router.put('/:id',async (req,res)=>{
+
+} );
+
+// delete (update author)
+router.delete('/:id',async (req,res)=>{
+
+} );
 module.exports=router;
