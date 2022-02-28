@@ -5,7 +5,7 @@ const author_schema = new mongoose.Schema({
     email : String,
     courses : [
         {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Course'
         }
     ]
